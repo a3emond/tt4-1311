@@ -1,6 +1,7 @@
-<div>
-  <p>ID: {{product.id}}</p>
-  <p>{{product.name}}</p>
-  <p>Price: CAD$ {{product.price}}</p>
+<div class="product-card">
+  <p>ID: {{ product.id }}</p>
+  <p>{{ product.name }}</p>
+  <p>Price: CAD$ {{ product.price }}</p>
+
   <button (click)="onAddToCart()">Add to Cart</button>
 </div>
