@@ -1,0 +1,46 @@
+
+<form (ngSubmit)="submit()">
+  <h2>Register</h2>
+
+  <label>
+    Name
+    <input [(ngModel)]="name" name="name" required />
+  </label>
+
+  <label>
+    Email
+    <input [(ngModel)]="email" name="email" type="email" required />
+  </label>
+
+  <label>
+    Password
+    <input [(ngModel)]="password" name="password" type="password" required />
+  </label>
+
+  <label>
+    Program
+    <input [(ngModel)]="program" name="program" required />
+  </label>
+
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="successMessage" class="success">
+    {{ successMessage }}
+  </div>
+
+  <button type="submit">
+    Register
+  </button>
+
+  <p>
+    Already have an account?
+    <a (click)="goToLogin()" style="cursor:pointer">
+      Login
+    </a>
+  </p>
+
+
+</form>
+

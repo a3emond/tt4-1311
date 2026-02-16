@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
+////////////////////////////////////MODELS/////////////////////////////////// (should be in auth.models.ts though ...)
+// Response DTOs
 export interface AuthResponse {
   access_token: string;
   user: User;
@@ -13,18 +14,41 @@ export interface User {
   email: string;
   program?: string;
 }
+// Request DTOs
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface RegisterRequest {
+  name: string;
+  email: string;
+  password: string;
+  program: string;
+}
+///////////////////////////////////////END///////////////////////////////////////////////
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  API_URL = "https://squid-app-a6n9k.ondigitalocean.app";
-  constructor(private readonly http: HttpClient) { }
+  private readonly API_URL =
+    "https://squid-app-a6n9k.ondigitalocean.app";
 
-  login(email: string, password: string): Observable<AuthResponse>{
-    return this.http.post<AuthResponse>(`${this.API_URL}/auth/login`, {email, password})
+  constructor(private readonly http: HttpClient) {}
+
+  login(request: LoginRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      `${this.API_URL}/auth/login`,
+      request
+    );
   }
 
+  register(request: RegisterRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(
+      `${this.API_URL}/auth/signup`,
+      request
+    );
+  }
 }
-
